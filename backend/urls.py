@@ -16,6 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
+# we are just going to be making api calls, so ok to set the path with prefix "api"
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include('base.urls')),
