@@ -2,7 +2,9 @@ from django.shortcuts import render
 # from django.http import JsonResponse
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
+
 from .products import products
+
 
 # first view will tell us what routes we have and how our API is going to look
 @api_view(['GET', 'POST', 'PUT']) # put methods we allow here

@@ -15,9 +15,16 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from django.conf import settings
+from django.conf.urls.static import static
+#static is a function that allows us to connect our urls
+
 
 # we are just going to be making api calls, so ok to set the path with prefix "api"
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include('base.urls')),
 ]
+
+#we're setting the URL and then telling it which folder to look into
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
