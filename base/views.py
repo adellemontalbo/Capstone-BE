@@ -3,7 +3,9 @@ from django.shortcuts import render
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 
-from .products import products
+from .models import Product
+# from .products import products
+from .serializers import ProductSerializer
 
 
 # first view will tell us what routes we have and how our API is going to look
@@ -20,29 +22,21 @@ def getRoutes(request):
     ]
     return Response(routes)
 
-# later on we'll actually query the db and get back real products, right now we just imported our sample products list
-
-'''
-REST framework allows you to work with regular function based views. 
-It provides a set of simple decorators that wrap your function based views to ensure they receive an instance of Request (rather than the usual Django HttpRequest) and allows them to return a Response (instead of a Django HttpResponse), and allow you to configure how the request is processed.
-By default only GET methods will be accepted (you can alter this)
-https://www.django-rest-framework.org/api-guide/views/
-'''
-
 # Get all products
 @api_view(['GET'])
 def getProducts(request):
-    return Response(products)
+    products = Product.objects.all()
+    #here it will serialize all our products
+    #the many=True is saying we're serializing multiple objects
+    serializer = ProductSerializer(products, many=True)
+    return Response(serializer.data)
 
 #get one product
 @api_view(['GET'])
 def getProduct(request, id): 
-    product = None
-    for item in products:
-        if item['id'] == id:
-            product = item
-            break
-    return Response(product)
+    product = Product.objects.get(id=id)
+    serializer = ProductSerializer(product, many=False)
+    return Response(serializer.data)
 
 
 
