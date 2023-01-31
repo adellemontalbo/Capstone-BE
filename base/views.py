@@ -42,6 +42,7 @@ def getRoutes(request):
 
 # Get user profile - giving us the user from the token
 @api_view(['GET'])
+@permission_classes([IsAuthenticated])
 def getUserProfile(request):
     user = request.user
     serializer = UserSerializer(user, many=False)
@@ -49,6 +50,7 @@ def getUserProfile(request):
 
 #get all users
 @api_view(['GET'])
+@permission_classes([IsAdminUser])
 def getUsers(request):
     users = User.objects.all()
     serializer = UserSerializer(users, many=True)
