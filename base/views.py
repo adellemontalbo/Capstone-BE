@@ -1,11 +1,25 @@
 from django.shortcuts import render
-# from django.http import JsonResponse
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 
 from .models import Product
-# from .products import products
 from .serializers import ProductSerializer
+
+from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
+from rest_framework_simplejwt.views import TokenObtainPairView
+
+class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
+    def validate(self, attrs):
+        data = super().validate(attrs)
+
+        data['username'] = self.user.username
+        data['email'] = self.user.email
+
+        return data
+    
+
+class MyTokenObtainPairView(TokenObtainPairView):
+    serializer_class = MyTokenObtainPairSerializer
 
 
 # first view will tell us what routes we have and how our API is going to look

@@ -11,6 +11,7 @@ Whenever we type in any of the following paths, we should trigger the appropriat
 
 # list of urls (paths) - we can name them
 urlpatterns = [
+    path('users/login', views.MyTokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('', views.getRoutes, name="routes"),
     path('products/', views.getProducts, name="products"),
     path('products/<id>', views.getProduct, name="product"),
