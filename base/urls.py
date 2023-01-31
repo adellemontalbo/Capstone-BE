@@ -13,6 +13,7 @@ Whenever we type in any of the following paths, we should trigger the appropriat
 urlpatterns = [
     path('users/login', views.MyTokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('', views.getRoutes, name="routes"),
+    path('users/profile', views.getUserProfile, name="user-profile"),
     path('products/', views.getProducts, name="products"),
     path('products/<id>', views.getProduct, name="product"),
 ]
