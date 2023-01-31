@@ -23,7 +23,10 @@ from django.conf.urls.static import static
 # we are just going to be making api calls, so ok to set the path with prefix "api"
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/', include('base.urls')),
+    # path('api/', include('base.urls')),
+    path('api/products/', include('base.urls.product_urls')),
+    path('api/users/', include('base.urls.user_urls')),
+    path('api/orders/', include('base.urls.order_urls')),
 ]
 
 #we're setting the URL and then telling it which folder to look into
