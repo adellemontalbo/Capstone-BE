@@ -47,7 +47,9 @@ INSTALLED_APPS = [
     
     'rest_framework',
     'corsheaders',
+    'storages',
     'base.apps.BaseConfig',
+    
 ]
 
 REST_FRAMEWORK = {
@@ -185,3 +187,9 @@ MEDIA_ROOT = 'static/images'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 CORS_ALLOW_ALL_ORIGINS = True
+
+AWS_QUERYSTRING_AUTH = False
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID')
+AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY')
+AWS_STORAGE_BUCKET_NAME = 'trini-treasures-bucket'
