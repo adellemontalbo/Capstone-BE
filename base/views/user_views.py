@@ -48,24 +48,24 @@ def registerUser(request):
         return Response(message, status=status.HTTP_400_BAD_REQUEST)
 
 # # Update user profile to 
-# @api_view(['PUT'])  # put methods we allow here
+@api_view(['PUT'])  # put methods we allow here
 # @permission_classes([IsAuthenticated])
-# def updateUserProfile(request):
-#     user = request.user
-#     serializer = UserSerializerWithToken(user, many=False) #We want to get back a new token
+def updateUserProfile(request):
+    user = request.user
+    serializer = UserSerializerWithToken(user, many=False) #We want to get back a new token
     
-#     data = request.data
+    data = request.data
     
-#     user.first_name = data['name']
-#     user.username = data['email'] #username and email are the same get email
-#     user.email = data['email']
-#     # check for password
-#     if data['password'] != '':
-#         user.password = make_password(data['password'])
+    user.first_name = data['name']
+    user.username = data['email'] #username and email are the same get email
+    user.email = data['email']
+    # check for password
+    if data['password'] != '':
+        user.password = make_password(data['password'])
     
-#     user.save()
+    user.save()
     
-#     return Response(serializer.data)
+    return Response(serializer.data)
 
 # Get user profile - giving us the user from the token
 @api_view(['GET'])  # put methods we allow here
