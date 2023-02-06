@@ -53,24 +53,29 @@ def addOrderItems(request):
 
         return Response(serializer.data)
 
-@api_view(['POST'])
-@permission_classes([IsAuthenticated])
+@api_view(['GET'])
+# @permission_classes([IsAuthenticated])
 def getOrderById(request, id):
 
+    order = Order.objects.get(id=id)
     user = request.user
+    serializer = OrderSerializer(order, many=False)
+    return Response(serializer.data)
 
-    try:
+    #I had an error, I was making a post instead of a get request. Auth still not working
+    
+    # try:
 
-        order = Order.objects.get(id=id)
-        if user.is_staff or order.user == user:
-            serializer = OrderSerializer(order, many=False)
-            return Response(serializer.data)
-        else:
-            return Response({
-                'detail': 'Not authorized'
-            }, status=status.HTTP_400_BAD_REQUEST)
-    except:
-        return Response({'detail': 'This order does not exist'}, status=status.HTTP_400_BAD_REQUEST)
+    #     order = Order.objects.get(id=id)
+    #     if user.is_staff or order.user == user:
+    #         serializer = OrderSerializer(order, many=False)
+    #         return Response(serializer.data)
+    #     else:
+    #         return Response({
+    #             'detail': 'Not authorized'
+    #         }, status=status.HTTP_400_BAD_REQUEST)
+    # except:
+    #     return Response({'detail': 'This order does not exist'}, status=status.HTTP_400_BAD_REQUEST)
 
 
 @api_view(['PUT'])
