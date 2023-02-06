@@ -6,4 +6,5 @@ urlpatterns = [
 
 path('add/', views.addOrderItems, name='orders-add'), 
 path('<str:id>/', views.getOrderById, name='user-order'), 
+path('<str:id>/pay', views.updateOrderToPaid, name='paid'), 
 ]

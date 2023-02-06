@@ -66,8 +66,18 @@ def getOrderById(request, id):
             serializer = OrderSerializer(order, many=False)
             return Response(serializer.data)
         else:
-            Response({
+            return Response({
                 'detail': 'Not authorized'
             }, status=status.HTTP_400_BAD_REQUEST)
     except:
         return Response({'detail': 'This order does not exist'}, status=status.HTTP_400_BAD_REQUEST)
+
+
+@api_view(['PUT'])
+@permission_classes([IsAuthenticated])
+def updateOrderToPaid(request, id):
+    order =Order.objects.get(id=id)
+    order.isPaid = True
+    order.save()
+    return Response('Order paid for')
+   
