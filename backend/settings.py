@@ -32,6 +32,7 @@ DEBUG = env('DEBUG')
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = env('SECRET_KEY')
 
+# ALLOWED_HOSTS = ['http://127.0.0.1:8000', 'https://trini-treasures.herokuapp.com', 'http://127.0.0.1:8000']
 ALLOWED_HOSTS = []
 
 

@@ -58,15 +58,16 @@ def addOrderItems(request):
 def getOrderById(request, id):
 
     order = Order.objects.get(id=id)
-    user = request.user
+    # user = request.user
     serializer = OrderSerializer(order, many=False)
     return Response(serializer.data)
 
     #I had an error, I was making a post instead of a get request. Auth still not working
-    
+
     # try:
 
     #     order = Order.objects.get(id=id)
+    #     user = request.user
     #     if user.is_staff or order.user == user:
     #         serializer = OrderSerializer(order, many=False)
     #         return Response(serializer.data)
