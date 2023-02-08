@@ -33,7 +33,7 @@ DEBUG = env('DEBUG')
 SECRET_KEY = env('SECRET_KEY')
 
 # ALLOWED_HOSTS = ['http://127.0.0.1:8000', 'https://trini-treasures.herokuapp.com', 'http://127.0.0.1:8000']
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost','trini-treasures.herokuapp.com']
 
 
 # Application definition
@@ -96,7 +96,7 @@ SIMPLE_JWT = {
 
 MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
-
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -180,7 +180,9 @@ MEDIA_URL = '/images/'
 
 STATICFILES_DIRS = [BASE_DIR / 'static']
 
-MEDIA_ROOT = 'static/images'
+MEDIA_ROOT = BASE_DIR /'static/images'
+STATIC_ROOT =BASE_DIR / 'staticfiles'
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
@@ -194,3 +196,6 @@ CORS_ALLOW_ALL_ORIGINS = True
 # AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID')
 # AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY')
 # AWS_STORAGE_BUCKET_NAME = 'trini-treasures-bucket'
+
+if os.getcwd() =='/app':
+    DEBUG = False
