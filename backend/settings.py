@@ -13,6 +13,8 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 from pathlib import Path
 import environ
 import os
+import django_heroku
+import dj_database_url
 
 env = environ.Env(
     # set casting, default value
@@ -214,6 +216,6 @@ CORS_ALLOW_ALL_ORIGINS = True
 # AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID')
 # AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY')
 # AWS_STORAGE_BUCKET_NAME = 'trini-treasures-bucket'
-
+django_heroku.settings(locals)
 if os.getcwd() =='/app':
     DEBUG = False
