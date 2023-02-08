@@ -150,16 +150,21 @@ WSGI_APPLICATION = 'backend.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': env('DB_NAME'),
-        'USER': env('DB_USER'),
-        'PASSWORD': env('DB_PASSWORD'),
-        'HOST': env('DB_HOST'),
-        'PORT': env('DB_PORT'),
-    }
-}
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': env('DB_NAME'),
+#         'USER': env('DB_USER'),
+#         'PASSWORD': env('DB_PASSWORD'),
+#         'HOST': env('DB_HOST'),
+#         'PORT': env('DB_PORT'),
+#     }
+# }
+
+
+DATABASES = {}
+DATABASES['default'] = dj_database_url.config(conn_max_age=600)
+
 
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
@@ -216,6 +221,9 @@ CORS_ALLOW_ALL_ORIGINS = True
 # AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID')
 # AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY')
 # AWS_STORAGE_BUCKET_NAME = 'trini-treasures-bucket'
-django_heroku.settings(locals)
+django_heroku.settings(locals())
+options = DATABASES['default'].get('OPTIONS', {})
+options.pop('sslmode', None)
+
 if os.getcwd() =='/app':
     DEBUG = False
