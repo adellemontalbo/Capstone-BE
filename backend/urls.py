@@ -19,11 +19,13 @@ from django.conf import settings
 from django.conf.urls.static import static
 #static is a function that allows us to connect our urls
 
+#I think we need this for deployment
+# from django.views.generic import TemplateView
+
 
 # we are just going to be making api calls, so ok to set the path with prefix "api"
 urlpatterns = [
     path('admin/', admin.site.urls),
-    # path('api/', include('base.urls')),
     path('api/products/', include('base.urls.product_urls')),
     path('api/users/', include('base.urls.user_urls')),
     path('api/orders/', include('base.urls.order_urls')),
@@ -31,3 +33,6 @@ urlpatterns = [
 
 #we're setting the URL and then telling it which folder to look into
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+# Ithink we need this for deployment
+# urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

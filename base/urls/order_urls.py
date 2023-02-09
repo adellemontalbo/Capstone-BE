@@ -7,5 +7,6 @@ urlpatterns = [
 path('add/', views.addOrderItems, name='orders-add'), 
 path('myorders/', views.getMyOrders, name='myorders'), 
 path('<str:id>/', views.getOrderById, name='user-order'), 
-path('<str:id>/pay', views.updateOrderToPaid, name='paid'), 
+path('<str:id>/pay/', views.updateOrderToPaid, name='paid'), 
+# path('<str:pk>/deliver/', views.updateOrderToDelivered, name='order-delivered')
 ]

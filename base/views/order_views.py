@@ -80,7 +80,7 @@ def getOrderById(request, id):
 
 
 @api_view(['PUT'])
-@permission_classes([IsAuthenticated])
+# @permission_classes([IsAuthenticated])
 def updateOrderToPaid(request, id):
     order =Order.objects.get(id=id)
     order.isPaid = True
