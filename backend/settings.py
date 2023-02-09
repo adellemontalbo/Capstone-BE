@@ -161,7 +161,7 @@ WSGI_APPLICATION = 'backend.wsgi.application'
 #         'PORT': env('DB_PORT'),
 #     }
 # }
-
+# PGUSER=postgres PGPASSWORD=postgres heroku pg:push postgresql+psycopg2://postgres:postgres@localhost:5432/capstone_sample  postgresql-curly-18767
 
 DATABASES = {}
 DATABASES['default'] = dj_database_url.config(conn_max_age=600)
