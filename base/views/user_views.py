@@ -68,6 +68,12 @@ def updateUserProfile(request):
     return Response(serializer.data)
 
 # Get user profile - giving us the user from the token
+# @api_view(['GET'])  # put methods we allow here
+# @permission_classes([IsAuthenticated])
+# def getUserProfile(request):
+#     user = request.user
+#     serializer = UserSerializer(user, many=False)
+#     return Response(serializer.data)
 @api_view(['GET'])  # put methods we allow here
 @permission_classes([IsAuthenticated])
 def getUserProfile(request):
