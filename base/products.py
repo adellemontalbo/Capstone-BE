@@ -28,7 +28,7 @@ products = [
     },
        {       
         'id': '4',
-        'name': 'Blue Heart Painting',
+        'name': 'Yellow Heart Painting',
         'image': 'https://images.pexels.com/photos/14921313/pexels-photo-14921313.jpeg',
         'description': 'Happy Painting',
         'category': 'Paintings',
